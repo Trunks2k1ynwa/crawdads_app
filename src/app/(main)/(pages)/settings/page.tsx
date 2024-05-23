@@ -4,9 +4,7 @@ import ProfilePicture from './_components/ProfilePicture';
 import { db } from '@/lib/db';
 import { currentUser } from '@clerk/nextjs/server';
 
-type Props = {};
-
-const Settings = async (props: Props) => {
+const Settings = async () => {
   const authUser = await currentUser();
   if (!authUser) return null;
 
@@ -67,7 +65,7 @@ const Settings = async (props: Props) => {
           userImage={user?.profileImage || ''}
           onUpload={uploadProfileImage}
         />
-        <ProfileForm />
+        <ProfileForm user={authUser || {}} onUpdate={updateUserInfo} />
       </div>
     </div>
   );

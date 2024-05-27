@@ -62,10 +62,10 @@ const Settings = async () => {
         </div>
         <ProfilePicture
           onDelete={removeProfileImage}
-          userImage={user?.profileImage || ''}
+          userImage={authUser?.imageUrl || ''}
           onUpload={uploadProfileImage}
         />
-        <ProfileForm user={authUser || {}} onUpdate={updateUserInfo} />
+        <ProfileForm user={JSON.parse(JSON.stringify(authUser))} onUpdate={updateUserInfo} />
       </div>
     </div>
   );

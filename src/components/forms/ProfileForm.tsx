@@ -16,13 +16,15 @@ type Props = {
 };
 
 const ProfileForm = ({ user, onUpdate }: Props) => {
+  console.log('🚀 ~ ProfileForm ~ user:', user);
+
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof EditUserProfileSchema>>({
     mode: 'onChange',
     resolver: zodResolver(EditUserProfileSchema),
     defaultValues: {
-      name: user.name,
-      email: user.email
+      name: user.firstName,
+      email: user.emailAddresses[0].emailAddress
     }
   });
 

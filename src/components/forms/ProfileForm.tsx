@@ -16,8 +16,6 @@ type Props = {
 };
 
 const ProfileForm = ({ user, onUpdate }: Props) => {
-  console.log('🚀 ~ ProfileForm ~ user:', user);
-
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof EditUserProfileSchema>>({
     mode: 'onChange',
@@ -36,7 +34,7 @@ const ProfileForm = ({ user, onUpdate }: Props) => {
 
   useEffect(() => {
     form.reset({ name: user.name, email: user.email });
-  }, [user]);
+  }, [form, user]);
 
   return (
     <Form {...form}>

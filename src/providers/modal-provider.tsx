@@ -28,6 +28,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
   const setOpen = async (modal: React.ReactNode, fetchData?: () => Promise<any>) => {
     if (modal) {
       if (fetchData) {

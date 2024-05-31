@@ -76,7 +76,6 @@ export const onCreateNewPageInDatabase = async (databaseId: string, accessToken:
     auth: accessToken
   });
 
-  console.log(databaseId);
   const response = await notion.pages.create({
     parent: {
       type: 'database_id',

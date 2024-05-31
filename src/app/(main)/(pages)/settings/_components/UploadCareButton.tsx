@@ -9,7 +9,6 @@ type Props = {
   onUpload: any;
 };
 const UploadCareButton = ({ onUpload }: Props) => {
-  const [files, setFiles] = React.useState([]);
   const router = useRouter();
   const ctxProviderRef = React.useRef<typeof LR.UploadCtxProvider.prototype & LR.UploadCtxProvider>(null);
   React.useEffect(() => {
@@ -19,29 +18,24 @@ const UploadCareButton = ({ onUpload }: Props) => {
     const handleChangeEvent = async (event: any) => {
       const file = await onUpload(event.detail.cdnUrl);
       if (file) {
+        router.refresh();
       }
-      router.refresh();
     };
-
     ctxProvider.addEventListener('file-upload-successs', handleChangeEvent);
-
     return () => {
       ctxProvider.removeEventListener('file-upload-successs', handleChangeEvent);
     };
-  }, [setFiles]);
+  }, [onUpload, router]);
   return (
     <div>
       <lr-config ctx-name='my-uploader' pubkey='a9428ff5ff90ae7a64eb' />
-      ctx-name="my-uploader" css-src=
-      {`https://cdn.jsdelivr.net/npm/@uploadcare/blocks@0.35.2/web/lr-file-uploader-regular.min.css`}
+
+      <lr-file-uploader-regular
+        ctx-name='my-uploader'
+        css-src={`https://cdn.jsdelivr.net/npm/@uploadcare/blocks@0.35.2/web/lr-file-uploader-regular.min.css`}
+      />
+
       <lr-upload-ctx-provider ctx-name='my-uploader' ref={ctxProviderRef} />
-      <div>
-        {/* {files.map(file => (
-          <div key={file.uuid}>
-            <img src={file.cdnUrl} alt={file.fileInfo.originalFilename} />
-          </div>
-        ))} */}
-      </div>
     </div>
   );
 };

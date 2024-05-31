@@ -1,4 +1,3 @@
-'use client';
 import { UserButton } from '@clerk/nextjs';
 import { currentUser } from '@clerk/nextjs/server';
 import { MenuIcon } from 'lucide-react';
@@ -10,11 +9,18 @@ import React from 'react';
 const Navbar = async () => {
   const router = useRouter();
   const authUser = await currentUser();
+
   return (
     <header className='fixed right-0 left-0 top-0 py-4 px-4 bg-black/40 backdrop-blur-lg z-[100] flex items-center border-b-[1px] border-neutral-900 justify-between'>
       <aside className='flex items-center gap-[2px] cursor-pointer' onClick={() => router.push('/')}>
         <p className='text-3xl font-bold text-red-600'>SHA</p>
-        <Image src='/fuzzieLogo.png' width={15} height={25} alt='fuzzie logo' className='shadow-sm' />
+        <Image
+          src='/fuzzieLogo.png'
+          width={15}
+          height={25}
+          alt='fuzzie logo'
+          className='shadow-sm'
+        />
         <p className='text-3xl font-bold text-red-600'>AM!</p>
       </aside>
       <nav className='hidden lg:block'>

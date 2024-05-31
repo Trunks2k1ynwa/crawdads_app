@@ -197,6 +197,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
         setSelected(newOptions);
         onChange?.(newOptions);
       },
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       [selected]
     );
 
@@ -215,6 +216,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
           }
         }
       },
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       [selected]
     );
 
@@ -256,6 +258,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
       };
 
       void exec();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [debouncedSearchTerm, open]);
 
     const CreatableItem = () => {
